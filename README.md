@@ -99,13 +99,13 @@ bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -s
 
 `bidsmapper` will automatically detect the DICOM files and sort them based on acquisitions. At the end of the command, a GUI will pop up:
 
-image
+![image](https://github.com/kschan0214/bidscoin_4mgh/blob/main/_images/bidseditor_1.jpg)
 
-We can manually update the naming structure based on our needs here.
+1. We can manually update the naming structure based on our needs here.
 
-Once we satisfy the structure of all acquisitions. We can save the mapping file and then exit by closing the window.
+2. Once we satisfy the structure of all acquisitions. We can save the mapping file and then exit by closing the window.
 
-image
+![image](https://github.com/kschan0214/bidscoin_4mgh/blob/main/_images/bidseditor_2.jpg)
 
 Now the mapping is completed. We can clean up the raw/ folder
 
