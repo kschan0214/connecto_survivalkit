@@ -1,0 +1,1554 @@
+# --------------------------------------------------------------------------------
+# This is a template bidsmap with the key-value mappings for the different BIDS
+# datatypes (anat, func, dwi, etc). The datatype attributes are the keys that map
+# onto the BIDS labels. The bidsmap data-structure should be 5 levels deep:
+#
+# dict       : dict     : list     : dict        : dict
+# dataformat : datatype : run-item : bidsmapping : mapping-data
+#
+# NB:
+# 1) This bidsmap is intended to be used by the bidsmapper for data discovery.
+#    Although generally not recommended, it can also be used directly by the bidscoiner
+# 2) This bidsmap is tailored to standard data acquisitions at the Donders Centre for
+#    Cognitive Neuroimaging (DCCN). You may consider (Institute) users may create their
+#    own bidsmap_[template].yaml or bidsmap_[sample].yaml file
+#
+# For more information, see: https://bidscoin.readthedocs.io
+# --------------------------------------------------------------------------------
+
+$schema: schema.json
+
+Options:
+# --------------------------------------------------------------------------------
+# General BIDScoin and plugin options
+# --------------------------------------------------------------------------------
+  bidscoin:
+    version: 4.2.1                  # BIDScoin version (should correspond with the version in pyproject.toml)
+    bidsignore: [mrs/, extra_data/, sub-*_ct.*]    # List of entries that are added to the .bidsignore file (for more info, see BIDS specifications), e.g. [extra_data/, pet/, myfile.txt, yourfile.csv]
+    subprefix: sub-                 # The subject prefix of the source data
+    sesprefix: ses-                 # The session prefix of the source data
+    unknowntypes: [mrs, extra_data] # A list of datatypes that are converted to BIDS-like datatype folders
+    ignoretypes: [exclude]          # A list of datatypes that are excluded / not converted to BIDS
+    unzip:                          # Wildcard pattern to select tarball/zip-files in the source folders that need to be unzipped (in a tempdir) to expose the data, e.g. '*.tar.gz'
+  plugins:                          # List of plugins with plugin-specific key-value pairs (that can be used by the plugin)
+    dcm2niix2bids:                  # See dcm2niix -h and https://www.nitrc.org/plugins/mwiki/index.php/dcm2nii:MainPage#General_Usage for more info
+      command: dcm2niix             # Command to run dcm2niix, e.g. "module add dcm2niix/1.0.20180622; dcm2niix" or "PATH=/opt/dcm2niix/bin:$PATH; dcm2niix" or /opt/dcm2niix/bin/dcm2niix or 'C:\"Program Files"\dcm2niix\dcm2niix.exe' (use quotes to deal with whitespaces in the path)
+      args: -b y -z y -i n -l n     # Argument string that is passed to dcm2niix. Tip: SPM users may want to use '-z n' (which produces unzipped NIfTI's, see dcm2niix -h for more information)
+      anon: y                       # Set this anonymization flag to 'y' to round off age and discard acquisition date from the meta data
+      meta: [.json, .tsv, .tsv.gz]  # The file extensions of the equally named metadata sourcefiles that are copied over to the BIDS sidecar files
+#    spec2nii2bids:                  # The settings for the spec2nii2bids plugin
+#      command: spec2nii             # Command to run spec2nii, e.g. "module add spec2nii; spec2nii" or "PATH=/opt/spec2nii/bin:$PATH; spec2nii" or /opt/spec2nii/bin/spec2nii or 'C:\"Program Files"\spec2nii\spec2nii.exe' (note the quotes to deal with the whitespace)
+#      args:                         # Argument string that is passed to spec2nii (see spec2nii -h for more information)
+#      anon: y                       # Set this anonymization flag to 'y' to round off age and discard acquisition date from the meta data
+#      meta: [.json, .tsv, .tsv.gz]  # The file extensions of the equally named metadata sourcefiles that are copied over to the BIDS sidecar files
+#      multiraid: 2                  # The mapVBVD argument for selecting the multiraid Twix file to load (default = 2, i.e. 2nd file)
+#    pet2bids:
+#      command: dcm2niix4pet
+#      args:
+#      anon:
+#      meta: [.json, .tsv]
+
+
+DICOM:
+# --------------------------------------------------------------------------------
+# DICOM key-value heuristics (DICOM fields that are mapped to the BIDS labels)
+# --------------------------------------------------------------------------------
+  subject: <<filepath:/raw/sub-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as subject-label, e.g. <PatientID>
+  session: <<filepath:/raw/sub-.*?/ses-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as session-label, e.g. <StudyID>
+
+  anat:       # ----------------------- All anatomical runs --------------------
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/002-t1_mprage_noellp_1mm_grappa2_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012916115135804834691.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: t1_mprage_noellp_1mm_grappa2
+      MRAcquisitionType: 3D
+      Modality: MR
+      SeriesDescription: t1_mprage_noellp_1mm_grappa2_ND
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .tfl3d1_192ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      SliceThickness: '1'
+      FlipAngle: '8'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '3.31'
+      RepetitionTime: '2500'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: ''
+      ce:
+      rec: ND
+      run: <<>>
+      part: ['', mag, phase, real, imag, 0]        # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
+      suffix: T1w
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/003-t1_mprage_noellp_1mm_grappa2/MR.1.3.12.2.1107.5.2.65.237551.2024012916115265269835481.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: t1_mprage_noellp_1mm_grappa2
+      MRAcquisitionType: 3D
+      Modality: MR
+      SeriesDescription: t1_mprage_noellp_1mm_grappa2
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .tfl3d1_192ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      SliceThickness: '1'
+      FlipAngle: '8'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '3.31'
+      RepetitionTime: '2500'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: ''
+      ce:
+      rec:
+      run: <<>>
+      part: ['', mag, phase, real, imag, 0]        # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
+      suffix: T1w
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/013-t2_space_dark-fluid_sag_1mm_grappa2_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012917174517195414517.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: t2_space_dark-fluid_sag_1mm_grappa2
+      Modality: MR
+      SeriesDescription: t2_space_dark-fluid_sag_1mm_grappa2_ND
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .spcirrr278ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: SPIN
+      MRAcquisitionType: 3D
+      SliceThickness: '1'
+      FlipAngle: '120'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '393.0'
+      RepetitionTime: '5000'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: FLAIR
+      acq: ''
+      ce:
+      rec: ND
+      run: <<>>
+      part: ['', mag, phase, real, imag, 0]   # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/014-t2_space_dark-fluid_sag_1mm_grappa2/MR.1.3.12.2.1107.5.2.65.237551.2024012917174624478515200.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: t2_space_dark-fluid_sag_1mm_grappa2
+      Modality: MR
+      SeriesDescription: t2_space_dark-fluid_sag_1mm_grappa2
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .spcirrr278ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: SPIN
+      MRAcquisitionType: 3D
+      SliceThickness: '1'
+      FlipAngle: '120'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '393.0'
+      RepetitionTime: '5000'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: FLAIR
+      acq: ''
+      ce:
+      rec:
+      run: <<>>
+      part: ['', mag, phase, real, imag, 0]   # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/015-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917214875300919876.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '70'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA70
+      ce:
+      rec:
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/016-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917240200400226794.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '20'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA20
+      ce:
+      rec:
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/017-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917261527619433713.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '10'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA10
+      ce:
+      rec:
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/018-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917282897311040632.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '50'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA50
+      ce:
+      rec:
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/019-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917304841086972514.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '5'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA5
+      ce:
+      rec:
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/020-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917330522006804377.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '30'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA30
+      ce:
+      rec:
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/021-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917351760742048829.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '40'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA40
+      ce:
+      rec:
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/026-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917445516366806931.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '70'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA70
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/027-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917445556122407091.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '70'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA70
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 2
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/028-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917454577162219405.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '20'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA20
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/029-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917454616797119562.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '20'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA20
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 2
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/034-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917463762760033117.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '10'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA10
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/035-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917463802853133275.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '10'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA10
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 2
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/038-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917473944599852749.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '50'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA50
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/039-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917473986987453014.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '50'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA50
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 2
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/040-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917483878267872720.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '5'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA5
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/041-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917483926497572889.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '5'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA5
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 2
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/042-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917494045666992927.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '30'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA30
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/043-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917494090923693163.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '30'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA30
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 2
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/044-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917504102335413009.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '40'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA40
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 1
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/045-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917504148819913218.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso
+      Modality: MR
+      SeriesDescription: fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d15_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 3D
+      SliceThickness: '1.8'
+      FlipAngle: '40'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.62'
+      RepetitionTime: '45'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      suffix: MEGRE
+      acq: FA40
+      ce:
+      rec: RR
+      run: <<>>
+      echo: '1'
+      part:
+      - ''
+      - mag
+      - phase
+      - real
+      - imag
+      - 2
+    meta: {}
+  func:       # ----------------------- All functional runs --------------------
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/024-ep2d_bold_2mm_TR1090_350vols/MR.1.3.12.2.1107.5.2.65.237551.2024012917371659992752065.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: ep2d_bold_2mm_TR1090_350vols
+      Modality: MR
+      SeriesDescription: ep2d_bold_2mm_TR1090_350vols
+      ImageType: "['ORIGINAL', 'PRIMARY', 'FMRI', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .epfid2d1_110
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '60'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '30.0'
+      RepetitionTime: '1090'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      task: ep2dbold2mmTR1090350vols
+      acq:
+      ce:
+      dir:
+      rec:
+      run: <<>>
+      echo:
+      part: ['', mag, phase, real, imag, 0]
+      suffix: bold
+    meta:
+      TaskName: ep2d_bold_2mm_TR1090_350vols
+      B0FieldSource:
+      B0FieldIdentifier:
+  perf: []     # ----------------------- All perfusion runs ---------------------
+  dwi:        # ----------------------- All diffusion runs ---------------------
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/004-ep2d_diff_C2_D30_d6_64dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012916165112145036021.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ImageType: "['ORIGINAL', 'PRIMARY', 'DIFFUSION', 'NONE']"
+      Modality: MR
+      ProtocolName: ep2d_diff_C2_D30_d6_64dirs
+      SeriesDescription: ep2d_diff_C2_D30_d6_64dirs
+      SequenceName: ''
+      PulseSequenceName: epse2d1_110
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '90'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '53.0'
+      RepetitionTime: '3600'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      acq: ep2ddiffC2D30d664dirs
+      rec:
+      dir:
+      run: <<>>
+      part: &id001 ['', mag, phase, real, imag, 0]
+      suffix: dwi
+    meta:
+      B0FieldSource:
+      B0FieldIdentifier:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/006-ep2d_diff_C2_2nd_scan_PA/MR.1.3.12.2.1107.5.2.65.237551.2024012916375907092204702.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ImageType: "['ORIGINAL', 'PRIMARY', 'DIFFUSION', 'NONE']"
+      Modality: MR
+      ProtocolName: ep2d_diff_C2_2nd_scan_PA
+      SeriesDescription: ep2d_diff_C2_2nd_scan_PA
+      SequenceName: ''
+      PulseSequenceName: epse2d1_110
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '90'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '53.0'
+      RepetitionTime: '3600'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      acq: ep2ddiffC22ndscanPA
+      rec:
+      dir:
+      run: <<>>
+      part: *id001
+      suffix: dwi
+    meta:
+      B0FieldSource:
+      B0FieldIdentifier:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/007-ep2d_diff_C2_D30_d6_32dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012916385938569106718.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ImageType: "['ORIGINAL', 'PRIMARY', 'DIFFUSION', 'NONE']"
+      Modality: MR
+      ProtocolName: ep2d_diff_C2_D30_d6_32dirs
+      SeriesDescription: ep2d_diff_C2_D30_d6_32dirs
+      SequenceName: ''
+      PulseSequenceName: epse2d1_110
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '90'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '53.0'
+      RepetitionTime: '3600'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      acq: ep2ddiffC2D30d632dirs
+      rec:
+      dir:
+      run: <<>>
+      part: *id001
+      suffix: dwi
+    meta:
+      B0FieldSource:
+      B0FieldIdentifier:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/009-ep2d_diff_C2_D13_d6_64dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012916462061416129629.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ImageType: "['ORIGINAL', 'PRIMARY', 'DIFFUSION', 'NONE']"
+      Modality: MR
+      ProtocolName: ep2d_diff_C2_D13_d6_64dirs
+      SeriesDescription: ep2d_diff_C2_D13_d6_64dirs
+      SequenceName: ''
+      PulseSequenceName: epse2d1_110
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '90'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '53.0'
+      RepetitionTime: '3600'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      acq: ep2ddiffC2D13d664dirs
+      rec:
+      dir:
+      run: <<>>
+      part: *id001
+      suffix: dwi
+    meta:
+      B0FieldSource:
+      B0FieldIdentifier:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/011-ep2d_diff_C2_D13_d6_32dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012917032144734284576.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ImageType: "['ORIGINAL', 'PRIMARY', 'DIFFUSION', 'NONE']"
+      Modality: MR
+      ProtocolName: ep2d_diff_C2_D13_d6_32dirs
+      SeriesDescription: ep2d_diff_C2_D13_d6_32dirs
+      SequenceName: ''
+      PulseSequenceName: epse2d1_110
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '90'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '53.0'
+      RepetitionTime: '3600'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      acq: ep2ddiffC2D13d632dirs
+      rec:
+      dir:
+      run: <<>>
+      part: *id001
+      suffix: dwi
+    meta:
+      B0FieldSource:
+      B0FieldIdentifier:
+  fmap:       # ----------------------- All fieldmap runs ----------------------
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/022-tfl_b1map_head/MR.1.3.12.2.1107.5.2.65.237551.2024012917352118691451738.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: tfl_b1map_head
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      Modality: MR
+      SeriesDescription: tfl_b1map_head
+      SequenceName: ''
+      PulseSequenceName: .tfl2d1_512
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2.5'
+      FlipAngle: '8'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '2.25'
+      RepetitionTime: '10710'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: anat
+      suffix: TB1TFL
+      ce:
+      rec:
+      flip:
+      echo:
+      inv:
+      part: &id002 ['', mag, phase, real, imag, 0]
+      run: <<>>
+    meta:
+      B0FieldIdentifier:
+      IntendedFor:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/023-tfl_b1map_head/MR.1.3.12.2.1107.5.2.65.237551.2024012917352127079251760.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: tfl_b1map_head
+      ImageType: "['ORIGINAL', 'PRIMARY', 'FLIP ANGLE MAP', 'NONE']"
+      Modality: MR
+      SeriesDescription: tfl_b1map_head
+      SequenceName: ''
+      PulseSequenceName: .tfl2d1_512
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2.5'
+      FlipAngle: '80'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '2.25'
+      RepetitionTime: '10710'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: famp
+      suffix: TB1TFL
+      ce:
+      rec:
+      flip:
+      echo:
+      inv:
+      part: *id002
+      run: <<>>
+    meta:
+      B0FieldIdentifier:
+      IntendedFor:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/030-gre_field_mapping_2mm_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012917462168193924965.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: gre_field_mapping_2mm
+      EchoNumbers: '1'
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      Modality: MR
+      SeriesDescription: gre_field_mapping_2mm_ND
+      SequenceName: ''
+      PulseSequenceName: .fm2d2r
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '60'
+      EchoTime: ''
+      EffectiveEchoTime: '5.01'
+      RepetitionTime: '675'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      suffix: magnitude1
+      acq: grefieldmapping2mmND
+      run: <<>>
+    meta:
+      B0FieldIdentifier:
+      IntendedFor:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/031-gre_field_mapping_2mm/MR.1.3.12.2.1107.5.2.65.237551.2024012917462239345425328.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: gre_field_mapping_2mm
+      EchoNumbers: '1'
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      Modality: MR
+      SeriesDescription: gre_field_mapping_2mm
+      SequenceName: ''
+      PulseSequenceName: .fm2d2r
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '60'
+      EchoTime: ''
+      EffectiveEchoTime: '5.01'
+      RepetitionTime: '675'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      suffix: magnitude1
+      acq: grefieldmapping2mm
+      run: <<>>
+    meta:
+      B0FieldIdentifier:
+      IntendedFor:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/032-gre_field_mapping_2mm_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012917462258920625467.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: gre_field_mapping_2mm
+      EchoNumbers: '2'
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      Modality: MR
+      SeriesDescription: gre_field_mapping_2mm_ND
+      SequenceName: ''
+      PulseSequenceName: .fm2d2r
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '60'
+      EchoTime: ''
+      EffectiveEchoTime: '7.47'
+      RepetitionTime: '675'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      suffix: phasediff
+      acq: grefieldmapping2mmND
+      run: <<>>
+    meta:
+      B0FieldIdentifier:
+      IntendedFor:
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/033-gre_field_mapping_2mm/MR.1.3.12.2.1107.5.2.65.237551.2024012917462389429226045.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: gre_field_mapping_2mm
+      EchoNumbers: '2'
+      ImageType: "['ORIGINAL', 'PRIMARY', 'P', 'NONE']"
+      Modality: MR
+      SeriesDescription: gre_field_mapping_2mm
+      SequenceName: ''
+      PulseSequenceName: .fm2d2r
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      MRAcquisitionType: 2D
+      SliceThickness: '2'
+      FlipAngle: '60'
+      EchoTime: ''
+      EffectiveEchoTime: '7.47'
+      RepetitionTime: '675'
+      InPlanePhaseEncodingDirection: COLUMN
+    bids:
+      suffix: phasediff
+      acq: grefieldmapping2mm
+      run: <<>>
+    meta:
+      B0FieldIdentifier:
+      IntendedFor:
+  pet: []     # ----------------------- All PET runs ---------------------------
+  eeg: []     # ----------------------- All EEG data ---------------------------
+  ieeg: []     # ----------------------- All iEEG data --------------------------
+  extra_data:     [] # ----------------------- All extra data -------------------------
+  exclude:    # ----------------------- Data that will be left out -------------
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/001-localizer/MR.1.3.12.2.1107.5.2.65.237551.2024012916063662877534499.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: localizer
+      Modality: MR
+      SeriesDescription: localizer
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl2d1
+      SequenceVariant: ''
+      ScanningSequence: ''
+      MRAcquisitionType: 2D
+      SliceThickness: '7'
+      FlipAngle: '20'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '2.16'
+      RepetitionTime: '6'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: localizer
+      task: localizer
+      echo: '1'
+      suffix: ''
+    meta: {}
+PAR:
+# --------------------------------------------------------------------------------
+# PAR key-value heuristics (Philips PAR fields that are mapped to the BIDS labels)
+# --------------------------------------------------------------------------------
+  subject: <<filepath:/raw/sub-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as subject-label, e.g. <PatientID>
+  session: <<filepath:/raw/sub-.*?/ses-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as session-label, e.g. <StudyID>
+
+  anat: []     # ----------------------- All anatomical runs --------------------
+  func: []     # ----------------------- All functional runs --------------------
+  perf: []     # ----------------------- All perfusion runs ---------------------
+  dwi: []     # ----------------------- All diffusion runs ---------------------
+  fmap: []     # ----------------------- All fieldmap runs ----------------------
+  extra_data: []     # ----------------------- All extra data -------------------------
+  exclude: []     # ----------------------- Data that will be left out -------------
+SPAR:
+# ---------------------------------------------------------------------------------
+# SPAR key-value heuristics (Philips MRS fields that are mapped to the BIDS labels)
+# ---------------------------------------------------------------------------------
+  subject: <<filepath:/raw/sub-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as subject-label, e.g. <PatientID>
+  session: <<filepath:/raw/sub-.*?/ses-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as session-label, e.g. <StudyID>
+
+  mrs: []     # ---------------------- All spectroscopy runs ------------------
+  extra_data: []     # ----------------------- All extra data -------------------------
+  exclude: []     # ----------------------- Data that will be left out -------------
+Twix:
+# ---------------------------------------------------------------------------------
+# Twix key-value heuristics (Siemens MRS fields that are mapped to the BIDS labels)
+# ---------------------------------------------------------------------------------
+  subject: <<filepath:/raw/sub-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as subject-label, e.g. <PatientID>
+  session: <<filepath:/raw/sub-.*?/ses-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as session-label, e.g. <StudyID>
+
+  mrs: []     # ---------------------- All spectroscopy runs ------------------
+  extra_data: []     # ----------------------- All extra data -------------------------
+  exclude: []     # ----------------------- Data that will be left out -------------
+Pfile:
+# ------------------------------------------------------------------------------
+# P-file key-value heuristics (GE MRS fields that are mapped to the BIDS labels)
+# ------------------------------------------------------------------------------
+  subject: <<filepath:/raw/sub-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as subject-label, e.g. <PatientID>
+  session: <<filepath:/raw/sub-.*?/ses-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as session-label, e.g. <StudyID>
+
+  mrs: []     # ---------------------- All spectroscopy runs ------------------
+  extra_data: []     # ----------------------- All extra data -------------------------
+  exclude: []     # ----------------------- Data that will be left out -------------
+Nibabel:
+# --------------------------------------------------------------------------------
+# Nibabel key-value heuristics (header fields that are mapped to the BIDS labels)
+# --------------------------------------------------------------------------------
+  subject: <<filepath:/raw/sub-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as subject-label, e.g. <PatientID>
+  session: <<filepath:/raw/sub-.*?/ses-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as session-label, e.g. <StudyID>
+
+  anat: []     # ----------------------- All anatomical runs --------------------
+  func: []     # ----------------------- All functional runs --------------------
+  perf: []     # ----------------------- All perfusion runs ---------------------
+  dwi: []     # ----------------------- All diffusion runs ---------------------
+  fmap: []     # ----------------------- All fieldmap runs ----------------------
+  extra_data: []     # ----------------------- All extra data -------------------------
+  exclude: []     # ----------------------- Data that will be left out -------------
+ECAT:
+# --------------------------------------------------------------------------------
+# We use this to catalog ECAT files if they are preset
+# --------------------------------------------------------------------------------
+  subject: <<filepath:/raw/sub-(.*?)/>> # This filesystem property extracts the subject label from the source directory. NB: Any property or attribute can be used as subject-label, e.g. <PatientID>
+  session: <<filepath:/raw/sub-.*?/ses-(.*?)/>>
+
+  pet: [] # ----------------------- All PET runs ---------------------------
