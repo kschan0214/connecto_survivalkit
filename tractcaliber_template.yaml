@@ -58,7 +58,7 @@ DICOM:
 
   anat:       # ----------------------- All anatomical runs --------------------
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/002-t1_mprage_noellp_1mm_grappa2_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012916115135804834691.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/002-t1_mprage_noellp_1mm_grappa2_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012617161807448600627.dcm
     properties:
       filepath: ''
       filename: ''
@@ -91,7 +91,7 @@ DICOM:
       suffix: T1w
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/003-t1_mprage_noellp_1mm_grappa2/MR.1.3.12.2.1107.5.2.65.237551.2024012916115265269835481.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/003-t1_mprage_noellp_1mm_grappa2/MR.1.3.12.2.1107.5.2.65.237551.2024012617162514274401460.dcm
     properties:
       filepath: ''
       filename: ''
@@ -124,7 +124,7 @@ DICOM:
       suffix: T1w
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/013-t2_space_dark-fluid_sag_1mm_grappa2_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012917174517195414517.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/011-t2_space_dark-fluid_sag_1mm_grappa2_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012618250939180783064.dcm
     properties:
       filepath: ''
       filename: ''
@@ -157,7 +157,7 @@ DICOM:
       part: ['', mag, phase, real, imag, 0]   # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/014-t2_space_dark-fluid_sag_1mm_grappa2/MR.1.3.12.2.1107.5.2.65.237551.2024012917174624478515200.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/012-t2_space_dark-fluid_sag_1mm_grappa2/MR.1.3.12.2.1107.5.2.65.237551.2024012618251018658383584.dcm
     properties:
       filepath: ''
       filename: ''
@@ -190,7 +190,7 @@ DICOM:
       part: ['', mag, phase, real, imag, 0]   # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/015-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917214875300919876.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/016-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012618420799350089435.dcm
     properties:
       filepath: ''
       filename: ''
@@ -230,7 +230,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/016-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917240200400226794.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/017-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012618442165388196353.dcm
     properties:
       filepath: ''
       filename: ''
@@ -270,7 +270,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/017-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917261527619433713.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/018-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012618463555570303272.dcm
     properties:
       filepath: ''
       filename: ''
@@ -310,7 +310,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/018-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917282897311040632.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/019-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012618484866328510191.dcm
     properties:
       filepath: ''
       filename: ''
@@ -350,7 +350,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/019-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917304841086972514.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/020-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012618510195636017111.dcm
     properties:
       filepath: ''
       filename: ''
@@ -390,7 +390,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/020-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917330522006804377.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/021-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012618531544980024029.dcm
     properties:
       filepath: ''
       filename: ''
@@ -430,7 +430,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/021-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012917351760742048829.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/022-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso/MR.1.3.12.2.1107.5.2.65.237551.2024012618553022889531083.dcm
     properties:
       filepath: ''
       filename: ''
@@ -470,7 +470,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/026-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917445516366806931.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/031-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619255492936525683.dcm
     properties:
       filepath: ''
       filename: ''
@@ -510,7 +510,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/027-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917445556122407091.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/032-fl3d_vibe_70deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619255537414425843.dcm
     properties:
       filepath: ''
       filename: ''
@@ -550,7 +550,7 @@ DICOM:
       - 2
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/028-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917454577162219405.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/033-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619264494178238156.dcm
     properties:
       filepath: ''
       filename: ''
@@ -590,7 +590,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/029-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917454616797119562.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/034-fl3d_vibe_20deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619264539727238319.dcm
     properties:
       filepath: ''
       filename: ''
@@ -630,7 +630,7 @@ DICOM:
       - 2
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/034-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917463762760033117.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/035-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619273582864650627.dcm
     properties:
       filepath: ''
       filename: ''
@@ -670,7 +670,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/035-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917463802853133275.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/036-fl3d_vibe_10deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619273624631050789.dcm
     properties:
       filepath: ''
       filename: ''
@@ -710,7 +710,7 @@ DICOM:
       - 2
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/038-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917473944599852749.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/037-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619282586522263099.dcm
     properties:
       filepath: ''
       filename: ''
@@ -750,7 +750,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/039-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917473986987453014.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/038-fl3d_vibe_50deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619282629845663262.dcm
     properties:
       filepath: ''
       filename: ''
@@ -790,7 +790,7 @@ DICOM:
       - 2
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/040-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917483878267872720.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/039-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619291758192175571.dcm
     properties:
       filepath: ''
       filename: ''
@@ -830,7 +830,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/041-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917483926497572889.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/040-fl3d_vibe_5deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619291801925975734.dcm
     properties:
       filepath: ''
       filename: ''
@@ -870,7 +870,7 @@ DICOM:
       - 2
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/042-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917494045666992927.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/041-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619300870027788044.dcm
     properties:
       filepath: ''
       filename: ''
@@ -910,7 +910,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/043-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917494090923693163.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/042-fl3d_vibe_30deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619300910369588208.dcm
     properties:
       filepath: ''
       filename: ''
@@ -950,7 +950,7 @@ DICOM:
       - 2
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/044-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917504102335413009.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/043-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619310057656400516.dcm
     properties:
       filepath: ''
       filename: ''
@@ -990,7 +990,7 @@ DICOM:
       - 1
     meta: {}
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/045-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012917504148819913218.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/044-fl3d_vibe_40deg_15echoes_CAIPI-R=1X5_1p8iso_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012619310103334500679.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1028,10 +1028,142 @@ DICOM:
       - real
       - imag
       - 2
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/005-t1_mprage_noellp_1mm_grappa2_RR_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012617243101395410220.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: t1_mprage_noellp_1mm_grappa2
+      MRAcquisitionType: 3D
+      Modality: MR
+      SeriesDescription: t1_mprage_noellp_1mm_grappa2_RR_ND
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .tfl3d1_192ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      SliceThickness: '1'
+      FlipAngle: '8'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '3.31'
+      RepetitionTime: '2500'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: ''
+      ce:
+      rec: RRND
+      run: <<>>
+      part: ['', mag, phase, real, imag, 0]        # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
+      suffix: T1w
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/006-t1_mprage_noellp_1mm_grappa2_RR/MR.1.3.12.2.1107.5.2.65.237551.2024012617243231134811083.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: t1_mprage_noellp_1mm_grappa2
+      MRAcquisitionType: 3D
+      Modality: MR
+      SeriesDescription: t1_mprage_noellp_1mm_grappa2_RR
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .tfl3d1_192ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      SliceThickness: '1'
+      FlipAngle: '8'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '3.31'
+      RepetitionTime: '2500'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: ''
+      ce:
+      rec: RR
+      run: <<>>
+      part: ['', mag, phase, real, imag, 0]        # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
+      suffix: T1w
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/014-t1_mprage_noellp_1mm_gappa3_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012618373303576983915.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: t1_mprage_noellp_1mm_gappa3
+      MRAcquisitionType: 3D
+      Modality: MR
+      SeriesDescription: t1_mprage_noellp_1mm_gappa3_ND
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .tfl3d1_192ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      SliceThickness: '1'
+      FlipAngle: '8'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '3.31'
+      RepetitionTime: '2500'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: ''
+      ce:
+      rec: ND
+      run: <<>>
+      part: ['', mag, phase, real, imag, 0]        # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
+      suffix: T1w
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/015-t1_mprage_noellp_1mm_gappa3/MR.1.3.12.2.1107.5.2.65.237551.2024012618373453438284732.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: t1_mprage_noellp_1mm_gappa3
+      MRAcquisitionType: 3D
+      Modality: MR
+      SeriesDescription: t1_mprage_noellp_1mm_gappa3
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .tfl3d1_192ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      EchoPulseSequence: GRADIENT
+      SliceThickness: '1'
+      FlipAngle: '8'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '3.31'
+      RepetitionTime: '2500'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: ''
+      ce:
+      rec: ''
+      run: <<>>
+      part: ['', mag, phase, real, imag, 0]        # # This BIDS value list will be shown as a dropdown menu in the bidseditor with the first (empty) item selected (as indicated by the last item, i.e. 0)
+      suffix: T1w
     meta: {}
   func:       # ----------------------- All functional runs --------------------
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/024-ep2d_bold_2mm_TR1090_350vols/MR.1.3.12.2.1107.5.2.65.237551.2024012917371659992752065.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/025-ep2d_bold_2mm_TR1090_350vols/MR.1.3.12.2.1107.5.2.65.237551.2024012618575905241834330.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1072,7 +1204,7 @@ DICOM:
   perf: []     # ----------------------- All perfusion runs ---------------------
   dwi:        # ----------------------- All diffusion runs ---------------------
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/004-ep2d_diff_C2_D30_d6_64dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012916165112145036021.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/004-ep2d_diff_C2_D30_d6_64dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012617220559376401995.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1107,7 +1239,7 @@ DICOM:
       B0FieldSource:
       B0FieldIdentifier:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/006-ep2d_diff_C2_2nd_scan_PA/MR.1.3.12.2.1107.5.2.65.237551.2024012916375907092204702.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/007-ep2d_diff_C2_2nd_scan_PA/MR.1.3.12.2.1107.5.2.65.237551.2024012617441281305371854.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1142,7 +1274,7 @@ DICOM:
       B0FieldSource:
       B0FieldIdentifier:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/007-ep2d_diff_C2_D30_d6_32dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012916385938569106718.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/008-ep2d_diff_C2_D30_d6_32dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012617451558638773870.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1177,7 +1309,7 @@ DICOM:
       B0FieldSource:
       B0FieldIdentifier:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/009-ep2d_diff_C2_D13_d6_64dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012916462061416129629.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/009-ep2d_diff_C2_D13_d6_64dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012617523672334196781.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1212,7 +1344,7 @@ DICOM:
       B0FieldSource:
       B0FieldIdentifier:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/011-ep2d_diff_C2_D13_d6_32dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012917032144734284576.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/010-ep2d_diff_C2_D13_d6_32dirs/MR.1.3.12.2.1107.5.2.65.237551.2024012618102975679651731.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1248,7 +1380,7 @@ DICOM:
       B0FieldIdentifier:
   fmap:       # ----------------------- All fieldmap runs ----------------------
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/022-tfl_b1map_head/MR.1.3.12.2.1107.5.2.65.237551.2024012917352118691451738.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/023-tfl_b1map_head/MR.1.3.12.2.1107.5.2.65.237551.2024012618553389674633985.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1286,7 +1418,7 @@ DICOM:
       B0FieldIdentifier:
       IntendedFor:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/023-tfl_b1map_head/MR.1.3.12.2.1107.5.2.65.237551.2024012917352127079251760.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/024-tfl_b1map_head/MR.1.3.12.2.1107.5.2.65.237551.2024012618553397186033998.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1324,7 +1456,7 @@ DICOM:
       B0FieldIdentifier:
       IntendedFor:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/030-gre_field_mapping_2mm_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012917462168193924965.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/026-gre_field_mapping_2mm_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012619070198913482269.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1356,7 +1488,7 @@ DICOM:
       B0FieldIdentifier:
       IntendedFor:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/031-gre_field_mapping_2mm/MR.1.3.12.2.1107.5.2.65.237551.2024012917462239345425328.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/027-gre_field_mapping_2mm/MR.1.3.12.2.1107.5.2.65.237551.2024012619070256336682611.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1388,7 +1520,7 @@ DICOM:
       B0FieldIdentifier:
       IntendedFor:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/032-gre_field_mapping_2mm_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012917462258920625467.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/028-gre_field_mapping_2mm_ND/MR.1.3.12.2.1107.5.2.65.237551.2024012619070278414882777.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1420,7 +1552,7 @@ DICOM:
       B0FieldIdentifier:
       IntendedFor:
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/033-gre_field_mapping_2mm/MR.1.3.12.2.1107.5.2.65.237551.2024012917462389429226045.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/029-gre_field_mapping_2mm/MR.1.3.12.2.1107.5.2.65.237551.2024012619070381716983339.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1454,10 +1586,10 @@ DICOM:
   pet: []     # ----------------------- All PET runs ---------------------------
   eeg: []     # ----------------------- All EEG data ---------------------------
   ieeg: []     # ----------------------- All iEEG data --------------------------
-  extra_data:     [] # ----------------------- All extra data -------------------------
+  extra_data: []     # ----------------------- All extra data -------------------------
   exclude:    # ----------------------- Data that will be left out -------------
   - provenance: 
-      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin/bids/code/bidscoin/provenance/project/test_bidscoin/raw/sub-018/001-localizer/MR.1.3.12.2.1107.5.2.65.237551.2024012916063662877534499.dcm
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-016/001-localizer/MR.1.3.12.2.1107.5.2.65.237551.2024012617104839946400476.dcm
     properties:
       filepath: ''
       filename: ''
@@ -1485,6 +1617,36 @@ DICOM:
       task: localizer
       echo: '1'
       suffix: ''
+    meta: {}
+  - provenance: 
+      /autofs/space/symphony_002/users/kwokshing/project/test_bidscoin2/bids/code/bidscoin/provenance/raw/sub-017/029-fl3d_vibe_get_uncomb_param/MR.1.3.12.2.1107.5.2.65.237551.2024012915374300756434469.dcm
+    properties:
+      filepath: ''
+      filename: ''
+      filesize: ''
+      nrfiles: ''
+    attributes:
+      ProtocolName: fl3d_vibe_get_uncomb_param
+      Modality: MR
+      SeriesDescription: fl3d_vibe_get_uncomb_param
+      ImageType: "['ORIGINAL', 'PRIMARY', 'M', 'NONE']"
+      SequenceName: ''
+      PulseSequenceName: .fl3d2_ns
+      SequenceVariant: ''
+      ScanningSequence: ''
+      MRAcquisitionType: 3D
+      SliceThickness: '4'
+      FlipAngle: '7'
+      EchoNumbers: '1'
+      EchoTime: ''
+      EffectiveEchoTime: '1.48'
+      RepetitionTime: '7'
+      InPlanePhaseEncodingDirection: ROW
+    bids:
+      acq: localizer
+      task: localizer
+      echo: '1'
+      suffix: dwi
     meta: {}
 PAR:
 # --------------------------------------------------------------------------------

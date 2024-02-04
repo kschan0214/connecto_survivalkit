@@ -59,15 +59,20 @@ Before we start, we should have the following:
 
 ### Step 1
 
-The easiest way is to copy one full set of DICOM data from Bourget to the local storage. This could be done by, for example,
+The easiest way is to copy one full set of DICOM data from Bourget to the local storage. If some subjects were scanned with (slightly) different acquisitions, then we should copy them to local storage for the mapping too. This could be done by, for example,
 
 ```
-sh /autofs/space/linen_001/users/kwokshing/tools/bidscoin_4mgh/copy_to_local.sh -i Tract_C2_HC_016 -o /your/project/folder/raw/sub-setup
+sh /autofs/space/linen_001/users/kwokshing/tools/bidscoin_4mgh/copy_to_local.sh -i Tract_C2_HC_016 -o /your/project/folder/raw/sub-016
 ```
 
-This script will perform two tasks:
+This script will perform three tasks:
 1. find the DICOMs from the network and copy them to local storage
 2. add .dcm extension to all DICOM files so that BIDscoin can recognise the files
+3. Reorganise the directory using `dicomsort` tool
+
+You should repeat the above operation if, for example, Tract_C2_HC_017 was scanned with different sequences.
+
+After the operation, you should be able to see the DICOM directories are created in `/your/project/folder/raw/` and sorted.
 
 ### Step 2
 
@@ -105,13 +110,15 @@ bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -s
 
 2. Once we satisfy the structure of all acquisitions. We can save the mapping file and then exit by closing the window.
 
+It would be wise to check all the sequences to see if everything is sorted correctly.
+
 ![image](https://github.com/kschan0214/bidscoin_4mgh/blob/main/_images/bidseditor_2.jpg)
 
 Now the mapping is completed. We can clean up the raw/ folder
 
 rm -r /your/project/folder/raw/*
 
-Generally speaking we only need to perform the mapping step once. If there is some new data that was acquired using other sequences, we need to re-run `bidsmapper` to map the new data again.
+Generally speaking we only need to perform the mapping step once. If there are some new data acquired using other sequences, we need to re-run `bidsmapper` to map all data again.
 
 Extra information: https://bidscoin.readthedocs.io/en/stable/index.html
 

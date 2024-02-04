@@ -31,7 +31,7 @@ print_usage() {
 }
 
 # get input based on flags
-while getopts ':h:i:o:d:' flag; do
+while getopts ':hi:o:d:' flag; do
   case "${flag}" in
     i) scanID=${OPTARG} ;;
     o) subjID="${OPTARG}" ;;
@@ -41,36 +41,24 @@ while getopts ':h:i:o:d:' flag; do
   esac
 done
 
-# Set up output folders
+## Set up output folders
 raw_dir=${proj_dir}raw/
 raw_subj_dir=${raw_dir}${subjID}/
 bids_dir=${proj_dir}bids/
 bids_subj_dir=${bids_dir}${subjID}/
 
+## get script directory
+script_dir=$( dirname $0 )
+
 ## set up Python environment
-source /autofs/space/linen_001/users/kwokshing/tools/dicom2bids/initiate_conda.sh
+source ${script_dir}/initiate_conda.sh
 source activate bidscoin_env
 
 ## print some information on display
-echo "Scan ID       :   ${scanID}"
 echo "Subject ID    :   ${subjID}"
-echo "BIDs folder   :   ${bids_subj_dir}"
 
-mkdir -p ${raw_subj_dir}
-
-## get DICOM path from the Bourget
-dicom_path=$( findsession ${scanID} command | sed -n 's/.*PATH   :  //p' )
-
-echo "DICOM path    :   ${dicom_path}"
-
-## temporarily copy dicom to local project storage
-cp ${dicom_path}/* ${raw_subj_dir}/
-
-## add .dcm extension to all file for bidscoin to work
-for file in ${raw_subj_dir}/*; do 
-newname=${file}.dcm
-mv ${file} ${newname}
-done 
+## Temporarily copy DICOM to local project folder
+sh ${script_dir}/copy_to_local.sh -i ${scanID} -o ${raw_subj_dir}
 
 ## bidscoin on single subject
 bidscoiner -f ${raw_dir} ${bids_dir} -p ${subjID}

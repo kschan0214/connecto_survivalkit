@@ -38,6 +38,9 @@ while getopts ':h:i:o:d:' flag; do
   esac
 done
 
+## get script directory
+script_dir=$( dirname $0 )
+
 ## print some information on display
 echo "Scan ID       :   ${scanID}"
 echo "Output folder :   ${output_dir}"
@@ -57,4 +60,11 @@ for file in ${output_dir}/*; do
 newname=${file}.dcm
 mv ${file} ${newname}
 done 
+
+## set up Python environment
+source ${script_dir}/initiate_conda.sh
+source activate bidscoin_env
+
+# reorganise the dicom directory
+dicomsort ${output_dir}
 
