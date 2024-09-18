@@ -1,21 +1,21 @@
-# bidscoin_4mgh
+# howto_connecto/howto_bids
 
 This repository contains the shell scripts that allow using bidscoin for the Martinos Center data structure
 
 ## Dependence:
 
-- BIDscoin v4.2.1 (https://github.com/Donders-Institute/bidscoin)
+- >= BIDscoin v4.2.1 (https://github.com/Donders-Institute/bidscoin)
 
 ## Prerequisite
 
-We need to setup a conda environment and install bidscoin before we can use it. At the Martinos Center I already did it for our group so you may skip this section. Here I just put everything I did for the record.
+We need to setup a conda environment and install bidscoin before we can use it. I already did it for our group so you may skip this section. Here I just put everything I did for the record.
 
-We need to install Anaconda first. For the instruction please see https://it.martinos.org/help/python/.
+We need to install Miniforge first. For the instruction please see https://it.martinos.org/help/python/.
 
-Once we install Anaconda, we can create a new environment for bidscoin. This was done:
+Once we install Miniforge, we can create a new environment for bidscoin. This was done:
 
 ```
-source /autofs/space/linen_001/users/kwokshing/tools/bidscoin_4mgh/initiate_conda.sh 
+source /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/initiate_conda.sh 
 conda create -n bidscoin_env python=3.9 pip
 ```
 
@@ -62,7 +62,7 @@ Before we start, we should have the following:
 The easiest way is to copy one full set of DICOM data from Bourget to the local storage. If some subjects were scanned with (slightly) different acquisitions, then we should copy them to local storage for the mapping too. This could be done by, for example,
 
 ```
-sh /autofs/space/linen_001/users/kwokshing/tools/bidscoin_4mgh/copy_to_local.sh -i Tract_C2_HC_016 -o /your/project/folder/raw/sub-016
+sh /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/copy_to_local.sh -i Tract_C2_HC_016 -o /your/project/folder/raw/sub-016
 ```
 
 This script will perform three tasks:
@@ -87,14 +87,14 @@ mkdir /your/project/folder/bids/
 We can then perform the actual mapping. First, we need to initiate conda environment to be able to use bidscoin. I already set up the environment and installed bidscoin for our group. We can simply run:
 
 ```
-source /autofs/space/linen_001/users/kwokshing/tools/bidscoin_4mgh/initiate_conda.sh 
+source /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/initiate_conda.sh 
 source activate bidscoin_env
 ```
 
 Then run bidsmapper using the template I set up for TractCaliber. 
 
 ```
-bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -t  /autofs/space/linen_001/users/kwokshing/tools/bidscoin_4mgh/tractcaliber_template.yaml -s 
+bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -t  /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/tractcaliber_template.yaml -s 
 ```
 
 (Optional) In principle, we can start from the default template and manually update the bids naming structure as we prefer:
@@ -104,7 +104,7 @@ bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -s
 
 `bidsmapper` will automatically detect the DICOM files and sort them based on acquisitions. At the end of the command, a GUI will pop up:
 
-![image](https://github.com/kschan0214/bidscoin_4mgh/blob/main/_images/bidseditor_1.jpg)
+![image](https://github.com/kschan0214/howto_connecto/howto_bids/blob/main/_images/bidseditor_1.jpg)
 
 1. We can manually update the naming structure based on our needs here.
 
@@ -112,7 +112,7 @@ bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -s
 
 It would be wise to check all the sequences to see if everything is sorted correctly.
 
-![image](https://github.com/kschan0214/bidscoin_4mgh/blob/main/_images/bidseditor_2.jpg)
+![image](https://github.com/kschan0214/howto_connecto/howto_bids/blob/main/_images/bidseditor_2.jpg)
 
 Now the mapping is completed. We can clean up the raw/ folder
 
@@ -127,7 +127,7 @@ Extra information: https://bidscoin.readthedocs.io/en/stable/index.html
 Once we create the mapping file, we can convert DICOM to BIDS on individual subjects:
 
 ```
-sh /autofs/space/linen_001/users/kwokshing/tools/bidscoin_4mgh/dicom2bids.sh -i Tract_C2_HC_016 -o sub-016 -d /your/project/folder/
+sh /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/dicom2bids.sh -i Tract_C2_HC_016 -o sub-016 -d /your/project/folder/
 ```
 
 Here, `-i` is the input of the scan ID used as the subject name when we register the subject in the console; `-o` is the subject label used in the project; and `-d` is the directory to the project folder.
