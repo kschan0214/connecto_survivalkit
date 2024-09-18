@@ -17,6 +17,7 @@ set -e
 scanID=''
 subjID=''
 proj_dir=''
+isKeepRaw=0
 
 # Usage
 print_usage() {
@@ -26,16 +27,18 @@ print_usage() {
   echo "-i        Subject ID used for scanning"
   echo "-o        Subject ID used in BIDs"
   echo "-d        Project direcory"
+  echo "-k        (Optional) '0': Do not keep the DICOM data in raw/; '1': keep the DICOM data in raw/ (default='0')"
   echo "-h        Print this help"
   exit 1
 }
 
 # get input based on flags
-while getopts ':hi:o:d:' flag; do
+while getopts ':hi:o:d:k:' flag; do
   case "${flag}" in
     i) scanID=${OPTARG} ;;
     o) subjID="${OPTARG}" ;;
     d) proj_dir="${OPTARG}" ;;
+    k) isKeepRaw="${OPTARG}" ;;
     h) print_usage
        exit 1 ;;
   esac
@@ -64,4 +67,6 @@ sh ${script_dir}/copy_to_local.sh -i ${scanID} -o ${raw_subj_dir}
 bidscoiner -f ${raw_dir} ${bids_dir} -p ${subjID}
 
 ## cleanup
+if [ ${isKeepRaw} -eq 0 ]; then
 rm -r ${raw_subj_dir}
+fi
