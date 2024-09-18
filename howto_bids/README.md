@@ -4,7 +4,7 @@ This repository contains the shell scripts that allow using bidscoin for the Mar
 
 ## Dependence:
 
-- >= BIDscoin v4.2.1 (https://github.com/Donders-Institute/bidscoin)
+- BIDscoin >= v4.2.1 (https://github.com/Donders-Institute/bidscoin)
 
 ## Prerequisite
 
