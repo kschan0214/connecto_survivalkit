@@ -42,7 +42,7 @@
 
 # Miniforge3 envionment
 # create symlink for weight directory
-TRACTSEG_WEIGHTS_DIR=//autofs/space/symphony_002/users/kwokshing/miniforge3/envs/tractseg_env/lib/python3.9/site-packages/tractseg/weights/
+TRACTSEG_WEIGHTS_DIR=/autofs/space/symphony_002/users/kwokshing/miniforge3/envs/tractseg_env/lib/python3.9/site-packages/tractseg/weights/
 tractseg_HOME=~/.tractseg
 if [ ! -f "${tractseg_HOME}/pretrained_weights_endings_segmentation_v4.npz" ]; then
     if [ -d "${tractseg_HOME}" ]; then
@@ -62,7 +62,7 @@ PATH=${FSLDIR}/bin:${PATH}
 export FSLDIR PATH
 
 # source miniforge base
-source /autofs/space/linen_001/users/kwokshing/tools/bidscoin_4mgh/initiate_conda.sh 
+source /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/initiate_conda.sh 
 
 # activate virtual environment
 source activate tractseg_env
