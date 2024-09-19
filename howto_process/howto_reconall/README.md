@@ -1,6 +1,6 @@
 # howto_reconall
 
-Due to the absent of body coil, we cannot enable `Prescan normalize` in the MPRAGE sequence. Therefore, the signal intensity of the MPRAGE image is strongly influenced by the coil sensitivity. This can cause issue when we process the anatomical image using the Freesurfer's `recon-all` function.
+Due to the absent of body coil, we cannot enable `Prescan normalize` of the MPRAGE sequence. Therefore, the signal intensity of the MPRAGE image is strongly influenced by the coil sensitivity. This can cause issue when we process the anatomical image using the Freesurfer's `recon-all` function.
 
 ## 1. Brain extraction fails
 
