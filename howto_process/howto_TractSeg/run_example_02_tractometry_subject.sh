@@ -34,7 +34,7 @@ mkdir -p ${tractometry_out_dir}
 
 ##############################################
 ## set up conda environment and other tools for TractSeg
-tractseg_script_dir=/autofs/space/linen_001/users/kwokshing/tools/dwi/TractSeg_mgh/
+tractseg_script_dir=/autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_process/howto_TractSeg/
 source ${tractseg_script_dir}initiate_TractSeg.sh 
 
 ##############################################

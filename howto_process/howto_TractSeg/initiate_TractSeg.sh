@@ -62,7 +62,7 @@ PATH=${FSLDIR}/bin:${PATH}
 export FSLDIR PATH
 
 # source miniforge base
-source /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/initiate_conda.sh 
+source /autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_general/howto_python/initiate_conda.sh 
 
 # activate virtual environment
 source activate tractseg_env

@@ -7,7 +7,7 @@ I have set up the conda environment to use [TractSeg](https://github.com/MIC-DKF
 You can initiate TractSeg using my shell script:
 
 ```bash
-source /autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_TractSeg/initiate_TractSeg.sh
+source /autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_process/howto_TractSeg/initiate_TractSeg.sh
 ```
 
 which will activate the virtual environment in where TractSeg is installed.

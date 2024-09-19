@@ -15,7 +15,7 @@ We need to install Miniforge first. For the instruction please see <https://it.m
 Once we install Miniforge, we can create a new environment for bidscoin. This was done:
 
 ```bash
-source /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/initiate_conda.sh 
+source /autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_process/howto_bids/initiate_conda.sh 
 conda create -n bidscoin_env python=3.9 pip
 ```
 
@@ -91,17 +91,17 @@ mkdir /your/project/folder/bids/
 We can then perform the actual mapping. First, we need to initiate conda environment to be able to use bidscoin. I already set up the environment and installed bidscoin for our group. We can simply run:
 
 ```bash
-source /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/initiate_conda.sh 
+source /autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_process/howto_bids/initiate_conda.sh 
 source activate bidscoin_env
 ```
 
-Then run bidsmapper using the template I set up for TractCaliber.
+Then run bidsmapper using the template I set up for TractCaliber for example.
 
 ```bash
-bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -t  /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/tractcaliber_template.yaml -s 
+bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -t  /autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_process/howto_bids/tractcaliber_template.yaml -s 
 ```
 
-(Optional) In principle, we can start from the default template and manually update the bids naming structure as we prefer:
+(Optional) We can start from the default template and manually update the bids naming structure as we prefer:
 
 ```bash
 bidsmapper /your/project/folder/raw/ /your/project/folder/bids/ -s 
@@ -132,7 +132,7 @@ Extra information: <https://bidscoin.readthedocs.io/en/stable/index.html>
 Once we create the mapping file, we can convert DICOM to BIDS on individual subjects:
 
 ```bash
-sh /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/dicom2bids.sh -i Tract_C2_HC_016 -o sub-016 -d /your/project/folder/
+sh /autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_process/howto_bids/dicom2bids.sh -i Tract_C2_HC_016 -o sub-016 -d /your/project/folder/
 ```
 
 Here, `-i` is the input of the scan ID used as the subject name when we register the subject in the console; `-o` is the subject label used in the project; and `-d` is the directory to the project folder.
