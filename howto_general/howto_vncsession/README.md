@@ -1,18 +1,18 @@
-# howto_connecto/howto_vncsession
+# howto_vncsession
 
 This document is for people who do not want to use NoMachine to access the server graphic remotely
 
 ## Related document
 
-- https://www.nmr.mgh.harvard.edu/martinos/userInfo/computer/remoteAccess.php
+- <https://www.nmr.mgh.harvard.edu/martinos/userInfo/computer/remoteAccess.php>
 
-## Software:
+## Software
 
-- Any VNC viewer (e.g., https://tigervnc.org)
+- Any VNC viewer (e.g., <https://tigervnc.org>)
 
 ## Step 1: Create an ssh tunnel to the Martinos Center coomputer system
 
-On Mac terminal, you can use 
+On Mac terminal, you can use
 
 ``ssh [username]@gate.nmr.mgh.harvard.edu``
 
@@ -23,6 +23,7 @@ Replace [username] with your user name. After entering your password, you should
 ## Step 2: Create a second ssh tunnel to one of the servers available in our group
 
 The current servers available are:
+
 - symphony
 - linen
 - rhapsody
@@ -39,7 +40,7 @@ Once you are in, you need to create a new password for your VNC sessions (only t
 
 ``mkdir -p ~/.vnc``
 
-and then 
+and then
 
 ``/usr/pubsw/bin/vncpasswd``
 
@@ -71,7 +72,7 @@ Here you can see a new session is created. Take note of the port number (i.e., '
 
 ## Step 6: Access the VNC session using VNC viewer
 
-Start your VNC viewer software and enter the server address. 
+Start your VNC viewer software and enter the server address.
 
 ![image](./_images/step6_1.png)
 
