@@ -65,7 +65,7 @@ Before we start, we should have the following:
 The easiest way is to copy one full set of DICOM data from Bourget to the local storage. If some subjects were scanned with (slightly) different acquisitions, then we should copy them to local storage for the mapping too. This could be done by, for example,
 
 ```bash
-sh /autofs/space/linen_001/users/kwokshing/tools/howto_connecto/howto_bids/copy_to_local.sh -i Tract_C2_HC_016 -o /your/project/folder/raw/sub-016
+sh /autofs/space/linen_001/users/kwokshing/tools/connecto_survivalkit/howto_process/howto_bids/copy_to_local.sh -i Tract_C2_HC_016 -o /your/project/folder/raw/sub-016
 ```
 
 This script will perform three tasks:
